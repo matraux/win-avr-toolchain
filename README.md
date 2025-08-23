@@ -1,4 +1,4 @@
-# MATRAUX WIN AVR TOOLCHAIN
+# MATRAUX Windows AVR Toolchain
 [![Latest Release](https://img.shields.io/github/v/release/matraux/win-avr-toolchain?display_name=tag&logo=github&logoColor=white)](https://github.com/matraux/win-avr-toolchain/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?logo=open-source-initiative&logoColor=white)](LICENSE)
 [![Platform](https://img.shields.io/badge/Windows-PowerShell-blue?logo=windows&logoColor=white)](#requirements)
@@ -29,7 +29,7 @@ Designed for fast, automated CLI development workflows on Windows 10/11.<br>
 <br>
 
 ## Installation
-Clone the repository anywhere on your computer, configure `Config.json` to match your tool paths, and spouštěj skripty přímo z této složky pomocí PowerShellu.
+Clone the repository anywhere on your computer, configure `Config.json` to match your tool paths, and run scripts via PowerShell.
 
 ```bash
 git clone https://github.com/matraux/win-avr-toolchain.git
