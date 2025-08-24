@@ -20,12 +20,14 @@ class Hex {
 		[Message]::Text("Building HEX")
 
 		$result = (& ([Toolchain]::AvrObjcopy) @ObjcopyArgs 2>&1) -join "`n"
+
 		if ($LASTEXITCODE -ne 0) {
 			[Message]::Error("HEX build failed `n$result")
 			throw
 		}
 
 		[Message]::Success("HEX built")
+
 		return $HexPath
 	}
 }

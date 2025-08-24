@@ -31,6 +31,7 @@ class Elf {
 		[Message]::Text("Building ELF")
 
 		$result = (& ([Toolchain]::AvrGcc) @GccArgs 2>&1) -join "`n"
+
 		if ($LASTEXITCODE -ne 0) {
 			[Message]::Error("ELF build failed `n$result")
 			throw

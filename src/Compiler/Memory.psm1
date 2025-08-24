@@ -10,6 +10,7 @@ class Memory {
 		)
 
 		$result = (& ([Toolchain]::AvrSize) @SizeArgs 2>&1) -join "`n"
+
 		if ($LASTEXITCODE -ne 0) {
 			[Message]::Error("Memory usage failed `n$result")
 			throw

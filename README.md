@@ -16,7 +16,7 @@ Designed for fast, automated CLI development workflows on Windows 10/11.<br>
 <br>
 
 ## Features
-- Orchestration for AVR GCC compiler, objcopy, avrdude, and size analysis
+- AVR GCC compiler, objcopy, avrdude, and size analysis
 - Simple CLI workflow: build, analyze, flash, fuse/lock manipulation
 - Strong PowerShell OOP: every function as a class, easy to extend
 - Modern, modular code organization
@@ -65,35 +65,6 @@ All tool paths are stored in `./config/Config.json` (or fallback `./config/Confi
 Build & Flash
 ```powershell
 "D:\AVR\Compiler\src\Build-Flash.ps1" -Source "D:\AVR\Projects\YourProject" -MCU atmega16 -Programmer usbasp
-```
-
-Build ELF binary from C/C++ sources:
-```powershell
-using module ".\src\Compiler\Elf.psm1"
-[Elf]::Build("src", "atmega16")
-```
-
-Memory usage report:
-```powershell
-using module ".\src\Compiler\Memory.psm1"
-[Memory]::Usage("firmware.elf", "atmega16")
-```
-
-Convert ELF to HEX:
-```powershell
-using module ".\src\Compiler\Hex.psm1"
-[Hex]::Build("firmware.elf")
-```
-Flash MCU firmware:
-```powershell
-using module ".\src\MCU\MCU.psm1"
-[MCU]::Write("atmega16", "usbasp", "flash", "firmware.hex")
-```
-
-Flash MCU fuse:
-```powershell
-using module ".\src\MCU\MCU.psm1"
-[MCU]::Write("atmega16", "usbasp", "hfuse", "DF")
 ```
 
 <br>
