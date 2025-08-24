@@ -1,14 +1,15 @@
 using module "..\Toolchain.psm1"
 using module "..\Utils\Message.psm1"
 
-class MCU {
+class Avrdude {
 	hidden static [string[]] $ValidMemories = @("lfuse", "hfuse", "efuse", "lock", "flash", "eeprom")
 
 	static [void] Read([string]$MCU, [string]$Programmer, [string]$Memory) {
-		if ($Memory -notin [MCU]::ValidMemories) {
-			[Message]::Error("Expected memory type [$([MCU]::ValidMemories -join ', ')], `"$Memory`" given.")
+		if ($Memory -notin [Avrdude]::ValidMemories) {
+			[Message]::Error("Expected memory type [$([Avrdude]::ValidMemories -join ', ')], `"$Memory`" given.")
 			throw
 		}
+
 		$AvrdudeArgs = @(
 			"-c", $Programmer
 			"-p", $MCU
@@ -16,6 +17,7 @@ class MCU {
 		)
 
 		[Message]::Text("Reading $Memory memory")
+
 		& ([Toolchain]::Avrdude) @AvrdudeArgs
 
 		if ($LASTEXITCODE -ne 0) {
@@ -25,10 +27,11 @@ class MCU {
 	}
 
 	static [void] Write([string]$MCU, [string]$Programmer, [string]$Memory, [string]$Value) {
-		if ($Memory -notin [MCU]::ValidMemories) {
-			[Message]::Error("Expected memory type [$([MCU]::ValidMemories -join ', ')], `"$Memory`" given.")
+		if ($Memory -notin [Avrdude]::ValidMemories) {
+			[Message]::Error("Expected memory type [$([Avrdude]::ValidMemories -join ', ')], `"$Memory`" given.")
 			throw
 		}
+
 		$AvrdudeArgs = @(
 			"-c", $Programmer
 			"-p", $MCU

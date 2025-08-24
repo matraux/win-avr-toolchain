@@ -9,7 +9,7 @@
 using module '.\Compiler\Elf.psm1'
 using module '.\Compiler\Memory.psm1'
 using module '.\Compiler\Hex.psm1'
-using module '.\MCU\MCU.psm1'
+using module '.\Avrdude\Avrdude.psm1'
 
 [CmdletBinding()]
 param(
@@ -60,7 +60,7 @@ finally {
 
 # Write MCU
 try {
-	[MCU]::Write($MCU, $Programmer, 'flash', $Hex)
+	[Avrdude]::Write($MCU, $Programmer, 'flash', $Hex)
 }
 catch {
 	throw
