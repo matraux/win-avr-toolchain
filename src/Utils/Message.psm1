@@ -1,8 +1,3 @@
-<#
-	.SYNOPSIS
-	Utility class for colored output blocks.
-#>
-
 class Message {
 	static [void] Block(
 		[string]$Message,
