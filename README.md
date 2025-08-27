@@ -10,8 +10,8 @@
 <br>
 
 ## Introduction
-A Windows-only PowerShell toolkit for orchestrating compilation, memory analysis, and uploading firmware for AVR microcontrollers.<br>
-Designed for fast, automated CLI development workflows on Windows 10/11.<br>
+**PowerShell toolchain for fast CLI development, memory analysis, and firmware upload for AVR microcontrollers on Windows 10/11.**<br>
+Modular, easy to configure, and focused on efficient developer workflow.
 
 <br>
 
@@ -41,30 +41,62 @@ git clone https://github.com/matraux/win-avr-toolchain.git
 | version | PowerShell | Windows | Note
 |----|----|---|---
 | 1.0.0 | 5.1+ | 10/11 | Initial release, modular OOP refactor
+| 1.1.0 | 5.1+ | 10/11 | Improved OOP, separated commands
 
-- **AVR GCC toolchain** (e.g., [Atmel AVR Toolchain for Windows](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers))
-- **avrdude** utility (e.g., [official builds](https://github.com/avrdudes/avrdude/releases))
-
-<br>
+- Windows 10 or 11 with PowerShell 5.1+
+- **AVR GCC toolchain** – Download the official [Atmel AVR 8-bit Toolchain for Windows](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers).
+	- Recommended install path: `C:\AVR\avr-gcc\`
+- **avrdude** programmer utility – Download from the [official avrdude GitHub releases](https://github.com/avrdudes/avrdude/releases).
+	- Recommended install path: `C:\AVR\avrdude\`
 
 ## Configuration
 
-All tool paths are stored in `./config/Config.json` (or fallback `./config/Config.json.dist`).
+Copy `config/Config.json.dist` to `config/Config.json` and edit the paths to match where you installed AVR-GCC and avrdude. Example:
+
 ```json
 {
-	"AvrGcc": "D:/AVR/avr-gcc/bin/avr-gcc.exe",
-	"AvrObjcopy": "D:/AVR/avr-gcc/bin/avr-objcopy.exe",
-	"AvrSize": "D:/AVR/avr-gcc/bin/avr-size.exe",
-	"Avrdude": "D:/AVR/avrdude/avrdude.exe"
+	"AvrGcc": "C:/AVR/avr-gcc/bin/avr-gcc.exe",
+	"AvrObjcopy": "C:/AVR/avr-gcc/bin/avr-objcopy.exe",
+	"AvrSize": "C:/AVR/avr-gcc/bin/avr-size.exe",
+	"Avrdude": "C:/AVR/avrdude/avrdude.exe"
 }
 ```
+_If you installed to different locations, update the paths accordingly._
 
 <br>
 
 ## Examples
-Build & Flash
+
+### Build & Flash
 ```powershell
-"D:\AVR\Compiler\src\Build-Flash.ps1" -Source "D:\AVR\Projects\YourProject" -MCU atmega16 -Programmer usbasp
+# Compile all C/C++ sources in YourProject, then flash firmware to an atmega16 MCU with a usbasp programmer:
+.\src\Commands\Flash.ps1 -Source "D:\AVR\Projects\YourProject" -MCU atmega16 -Programmer usbasp
+```
+
+### Memory Usage
+```powershell
+# Analyze memory usage in an ELF file for atmega16:
+.\src\Commands\MemoryUsage.ps1 -Elf "D:\AVR\Projects\YourProject\firmware.elf" -MCU atmega16
+```
+
+### Write MCU Memory
+```powershell
+# Write value 'DF' to MCU memory 'hfuse':
+.\src\Commands\WriteMcu.ps1 -MCU atmega16 -Programmer usbasp -Memory hfuse -Value DF
+```
+
+### Read MCU Memory
+```powershell
+# Read value from MCU memory 'hfuse':
+.\src\Commands\ReadMcu.ps1 -MCU atmega16 -Programmer usbasp -Memory hfuse
+```
+
+<br>
+
+## Troubleshooting
+If you encounter an *Execution Policy* error when running PowerShell scripts, you can launch a new terminal session with the `-ExecutionPolicy Bypass` parameter.
+```powershell
+powershell -ExecutionPolicy Bypass
 ```
 
 <br>
