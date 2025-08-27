@@ -1,6 +1,6 @@
 {
-	"AvrGcc": "D:/AVR/Compiler//tools/avr-gcc/bin/avr-gcc.exe",
-	"AvrObjcopy": "D:/AVR/Compiler//tools/avr-gcc/bin/avr-objcopy.exe",
-	"AvrSize": "D:/AVR/Compiler//tools/avr-gcc/bin/avr-size.exe",
-	"Avrdude": "D:/AVR/Compiler//tools/avrdude/avrdude.exe"
+	"AvrGcc": "C:/path/to/avr-gcc/bin/avr-gcc.exe",
+	"AvrObjcopy": "C:/path/to/avr-gcc/bin/avr-objcopy.exe",
+	"AvrSize": "C:/path/to/avr-gcc/bin/avr-size.exe",
+	"Avrdude": "C:/path/to/avrdude/avrdude.exe"
 }
