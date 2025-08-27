@@ -26,16 +26,19 @@ class Toolchain {
 		[Toolchain]::AvrObjcopy = [string]$obj.AvrObjcopy
 		[Toolchain]::Avrdude = [string]$obj.Avrdude
 
-		if(!(Test-Path ([Toolchain]::AvrSize))) {
+		if (!(Test-Path ([Toolchain]::AvrSize))) {
 			[Message]::Error("No such `"AvrSize`", please install or update Config.json")
 			throw
-		} elseif(!(Test-Path ([Toolchain]::AvrGcc))) {
+		}
+		elseif (!(Test-Path ([Toolchain]::AvrGcc))) {
 			[Message]::Error("No such `"AvrGcc`", please install or update Config.json")
 			throw
-		} elseif(!(Test-Path ([Toolchain]::AvrObjcopy))) {
+		}
+		elseif (!(Test-Path ([Toolchain]::AvrObjcopy))) {
 			[Message]::Error("No such `"AvrObjcopy`", please install or update Config.json")
 			throw
-		}	elseif(!(Test-Path ([Toolchain]::Avrdude))) {
+		}
+		elseif (!(Test-Path ([Toolchain]::Avrdude))) {
 			[Message]::Error("No such `"Avrdude`", please install or update Config.json")
 			throw
 		}
