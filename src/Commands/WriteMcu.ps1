@@ -1,0 +1,24 @@
+using module '.\..\Avrdude\Avrdude.psm1'
+
+[CmdletBinding()]
+param(
+	[Parameter(Mandatory, HelpMessage = "MCU (e.g. atmega16, attiny25, atmega88)")]
+	[string]$MCU,
+
+	[Parameter(Mandatory, HelpMessage = "Programmer (e.g. usbasp, ft232h)")]
+	[string]$Programmer,
+
+	[Parameter(Mandatory, HelpMessage = "Memory (e.g. lfuse, hfuse, efuse, lock, flash, eeprom)")]
+	[string]$Memory,
+
+	[Parameter(Mandatory, HelpMessage = "Value to write memory")]
+	[string]$Value
+)
+
+# Read MCU
+try {
+	[Avrdude]::Write($MCU, $Programmer, $Memory, $Value)
+}
+catch {
+	throw
+}
