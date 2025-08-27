@@ -1,4 +1,4 @@
-using module "..\Toolchain.psm1"
+using module "..\Toolchain\Toolchain.psm1"
 using module "..\Utils\Message.psm1"
 
 class Avrdude {
