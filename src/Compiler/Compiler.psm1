@@ -45,6 +45,11 @@ class Compiler {
 	}
 
 	static [void] MemoryUsage([string]$Elf, [string]$Mcu) {
+		if (!(Test-Path $Elf)) {
+			[Message]::Error("No such file `"$Elf`"")
+			throw
+		}
+
 		$SizeArgs = @(
 			("--mcu={0}" -f $MCU),
 			"-C", $Elf
@@ -111,7 +116,9 @@ class Compiler {
 	}
 
 	static [void] RemoveFile([string] $File) {
-		if (Test-Path $File) { Remove-Item $File -ErrorAction SilentlyContinue }
+		if (Test-Path $File) {
+			Remove-Item $File -ErrorAction SilentlyContinue
+		}
 	}
 
 }
