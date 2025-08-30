@@ -36,6 +36,7 @@ Modular, easy to configure, and focused on efficient developer workflow.
 |----|----|---|---
 | 1.0.0 | 5.1+ | 10/11 | Initial release, modular OOP refactor
 | 1.1.0 | 5.1+ | 10/11 | Improved OOP, separated commands
+| 1.1.1 | 5.1+ | 10/11 | Improved documentation and parameter help
 
 - Windows 10 or 11 with PowerShell 5.1+
 - **AVR GCC toolchain** – Download the official [Atmel AVR 8-bit Toolchain for Windows](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers).
@@ -117,6 +118,33 @@ D:/AVR/Projects/YourProject/
 # Read value from MCU memory 'hfuse':
 .\src\Commands\ReadMcu.ps1 -MCU atmega16 -Programmer usbasp -Memory hfuse
 ```
+
+### Visual Studio Code - Build Task
+```json
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Test - Flash",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", "Bypass",	// [optional] If you see an execution policy error
+				"-File", "C:\\AVR\\win-avr-toolchain\\src\\Commands\\Flash.ps1",	// Path to Flash script
+				"-Source", "${workspaceFolder}",	// Path to C/C++ sources in YourProject (e.g. current workspace folder ${workspaceFolder})
+				"-MCU", "atmega16",	// MCU type (e.g. atmega16, attiny25, atmega168, ...)
+				"-Optimization", "s",	// [optional] Optimization level (e.g. 0, 1, 2, 3, s, fast)
+				"-Programmer", "FT232H"	// Programmer type (e.g. usbasp, FT232H, FT245R, ...)
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
+```
+_Run build task via shortcut `Ctrl+Shift+B` or menu `Terminal -> Run Build Task`_
 
 <br>
 

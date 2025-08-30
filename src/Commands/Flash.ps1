@@ -6,10 +6,10 @@ param(
 	[Parameter(Mandatory, HelpMessage = "Path to C/C++ files source")]
 	[string]$Source,
 
-	[Parameter(Mandatory, HelpMessage = "MCU (e.g. atmega16, attiny25, atmega88)")]
+	[Parameter(Mandatory, HelpMessage = "MCU (e.g. atmega16, attiny25, atmega88, ...)")]
 	[string]$MCU,
 
-	[Parameter(Mandatory, HelpMessage = "Programmer (e.g. usbasp, ft232h)")]
+	[Parameter(Mandatory, HelpMessage = "Programmer (e.g. usbasp, FT232H, FT245R, ...)")]
 	[string]$Programmer,
 
 	[Parameter(HelpMessage = "Optimization compiled code (e.g. 0, 1, 2, 3, s, fast)")]
