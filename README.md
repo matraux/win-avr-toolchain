@@ -129,12 +129,12 @@ D:/AVR/Projects/YourProject/
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-ExecutionPolicy", "Bypass",	// [optional] If you see an execution policy error
-				"-File", "C:\\AVR\\win-avr-toolchain\\src\\Commands\\Flash.ps1",	// Path to Flash script
-				"-Source", "${workspaceFolder}",	// Path to C/C++ sources in YourProject (e.g. current workspace folder ${workspaceFolder})
-				"-MCU", "atmega16",	// MCU type (e.g. atmega16, attiny25, atmega168, ...)
-				"-Optimization", "s",	// [optional] Optimization level (e.g. 0, 1, 2, 3, s, fast)
-				"-Programmer", "FT232H"	// Programmer type (e.g. usbasp, FT232H, FT245R, ...)
+				"-ExecutionPolicy", "Bypass",
+				"-File", "C:\\AVR\\win-avr-toolchain\\src\\Commands\\Flash.ps1",
+				"-Source", "${workspaceFolder}",
+				"-MCU", "atmega16",
+				"-Optimization", "s",
+				"-Programmer", "FT232H"
 			],
 			"group": {
 				"kind": "build",
